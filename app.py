@@ -30,15 +30,6 @@ def get_vatimetro():
     result = db_lib.vatimetro()
     return jsonify(result)
 
-@app.route('/rbmspwr', methods=['GET'])
-def rbmspwr():
-    result = db_lib.rbmspwr()
-    return jsonify(result)
-
-@app.route('/modulos', methods=['GET'])
-def get_modulos():
-    result = db_lib.modulos()
-    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
