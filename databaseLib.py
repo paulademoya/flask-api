@@ -24,14 +24,18 @@ class Databaselib:
             for vatimetro in vatimetros_list:
                 # Verificar si 'Fecha' es de tipo datetime, y convertir a string
                 if isinstance(vatimetro['Fecha'], datetime):
+                    # Guardar la fecha y hora original en variables separadas
+                    fecha_original = vatimetro['Fecha']
+                    
                     # Convertir la fecha y hora a formato string
-                    vatimetro['Fecha'] = vatimetro['Fecha'].strftime('%Y-%m-%d')  # Parte de la fecha
-                    vatimetro['Hora'] = vatimetro['Fecha'].strftime('%H:%M')  # Parte de la hora
+                    vatimetro['Fecha'] = fecha_original.strftime('%Y-%m-%d')  # Parte de la fecha
+                    vatimetro['Hora'] = fecha_original.strftime('%H:%M')  # Parte de la hora
 
                     # Convertir a segundos desde la época Unix
-                    vatimetro['Sec'] = int(vatimetro['Fecha'].timestamp())
+                    vatimetro['Sec'] = int(fecha_original.timestamp())
                 
             return {"vatimetros": vatimetros_list}
         
         except Exception as e:
             return {"message": "Error al obtener las baterías", "error": str(e)}
+
